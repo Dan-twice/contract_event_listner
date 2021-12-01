@@ -2,3 +2,6 @@ connection:
   ws: "wss://rinkeby.infura.io/ws/v3/"
   project: "b9397e496e5541489195b3da512b912f"
   contract: "0x213ce8178f85d7a084c3d92c3dba914ff9e147df"
+
+db:
+  url: postgresql://docker:password@pgdbEventer:5432/newdb?sslmode=disable

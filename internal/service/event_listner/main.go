@@ -9,6 +9,7 @@ import (
 )
 
 type Service struct {
+	eventer config.EventerInterface
 	log *logan.Entry
 	client *ethclient.Client
 	address common.Address
@@ -23,6 +24,7 @@ func New(opts config.Opts) *Service{
 	address := common.HexToAddress(opts.Conf.ContractAddr)
 
 	return &Service{
+		eventer: opts.Eventer,
 		log: opts.Log,
 		client: client,
 		address: address,

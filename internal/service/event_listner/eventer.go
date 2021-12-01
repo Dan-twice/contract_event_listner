@@ -44,7 +44,17 @@ func (s *Service) processTest(ctx context.Context) error {
 			return err
 		case event := <-loggesChannel:
 			if event != nil {
+				if err = s.eventer.Add(event); err != nil{
+					return err
+				}
+
 				fmt.Println(event)
+				resalt, err := s.eventer.GetById(0).Select()
+				if err != nil{
+					return err
+				}
+
+				fmt.Println(resalt)
 			}
 		}
 	}

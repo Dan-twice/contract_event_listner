@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    container_name: pgdbEventer
+    environment:
+      POSTGRES_DB: "newdb"
+      POSTGRES_USER: "docker"
+      POSTGRES_PASSWORD: "password"
+    ports:
+      - "5438:5432"
+    networks:
+      - postnet
+  app:
+    build: ../eth_service
+    environment:
+      - KV_VIPER_FILE=/config.yaml
+    volumes:
+      - ./config.yaml:/config.yaml
+    depends_on:
+      - db
+    networks:
+      - postnet
+networks:
+  postnet:
+    external: true

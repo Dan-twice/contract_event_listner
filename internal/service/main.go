@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"eth_service/internal/config"
+	"eth_service/internal/db"
 	"eth_service/internal/service/event_listner"
 	"gitlab.com/distributed_lab/kit/kv"
 	"gitlab.com/distributed_lab/logan/v3"
@@ -33,6 +34,7 @@ func (s *Service) spawn(ctx context.Context) {
 	}
 
 	eventer := event_listner.New(config.Opts{
+		Eventer: db.NewEventer(s.config.DB()),
 		Log: s.log,
 		Conf: conf,
 	})
