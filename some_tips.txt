@@ -1,6 +1,0 @@
-Don't forget:
-    about vendor
-    use network between containers
-    db is always service which require own container
-    about viper files
-    with git use access token instead of password
